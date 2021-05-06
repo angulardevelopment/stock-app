@@ -1,0 +1,19 @@
+<h2>Stock market average calculator</h2>
+
+<p>First buy price</p>
+<input type="number" [(ngModel)]="firstBuyPrice" placeholder="share price" (change)="getFirstTotal()">
+<input type="number" [(ngModel)]="firstShare" placeholder="units" (change)="getFirstTotal()">
+<input type="text" name="" id="" disabled  [(ngModel)]="totalFirstPrice">
+
+<br>
+<p>Second Buy</p>
+<input type="number" [(ngModel)]="secondBuyPrice" placeholder="share price" (change)="getSecondTotal()">
+<input type="number" [(ngModel)]="secondShare"  placeholder="units" (change)="getSecondTotal()">
+<input type="text" name="" id="" disabled  [(ngModel)]="totalSecondPrice">
+<br>
+<p>Final Average price</p>
+<input type="number" [(ngModel)]="averagePrice" disabled>
+<p>Final Quantity</p>
+<input type="number" [(ngModel)]="totalShares" disabled>
+<p>Total Amount</p>
+<input type="number" [(ngModel)]="totalAmount" disabled>

@@ -1,3 +1,7 @@
+# About 
+
+stock averaging app
+This  helps you in Trading.
 # Averaging
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
