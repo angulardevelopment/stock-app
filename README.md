@@ -1,3 +1,5 @@
+ng build --prod --baseHref=" https://angulardevelopment.github.io/stock-averaging-app/"
+
 # About 
 
 stock averaging app
