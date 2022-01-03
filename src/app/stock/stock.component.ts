@@ -3,11 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.component.html',
-  styleUrls: ['./stock.component.css']
+  styleUrls: ['./stock.component.css'],
 })
 export class StockComponent implements OnInit {
-
-
   firstBuyPrice;
   firstShare;
   totalFirstPrice;
@@ -18,20 +16,22 @@ export class StockComponent implements OnInit {
   totalShares;
   totalAmount;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  getFirstTotal (){
+  getFirstTotal() {
     this.totalFirstPrice = this.firstBuyPrice * this.firstShare;
   }
 
-  getSecondTotal (){
+  getSecondTotal() {
     this.totalSecondPrice = this.secondBuyPrice * this.secondShare;
-    this.averagePrice = (this.totalFirstPrice + this.totalSecondPrice)/(this.firstShare + this.secondShare);
-  this.totalShares = this.firstShare + this.secondShare;
-  this.totalAmount = this.totalSecondPrice + this.totalFirstPrice;
-
+    this.averagePrice =
+      (this.totalFirstPrice + this.totalSecondPrice) /
+      (this.firstShare + this.secondShare);
+    this.totalShares = this.firstShare + this.secondShare;
+    this.totalAmount = this.totalSecondPrice + this.totalFirstPrice;
   }
+
+
 }
