@@ -3,5 +3,11 @@ https://angulardevelopment.github.io/stock-averaging-app/
 
 ng build --prod --baseHref="https://angulardevelopment.github.io/stock-averaging-app/"
 
-stock averaging app
-This  helps you in Trading.
+# About
+This helps you in Trading.
+
+# Features
+stock averaging 
+percentage
+Oi analysis
+
