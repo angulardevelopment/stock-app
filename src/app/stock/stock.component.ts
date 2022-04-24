@@ -20,6 +20,10 @@ export class StockComponent implements OnInit {
   form: FormGroup; 
   file;
   arrayBuffer;
+  totalValue= '0';
+  finalJson = {};
+  counter = 0;
+  allData = [];
   constructor(    private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -44,9 +48,9 @@ export class StockComponent implements OnInit {
 
 
   priceChangePercent(numVal1, numVal2) {
-    var totalValue = (((numVal2 - numVal1) / numVal1) * 100).toFixed(2);
+    this.totalValue = (((numVal2 - numVal1) / numVal1) * 100).toFixed(2);
 
-    console.log(totalValue);
+
   }
 
   submit(nums) {
@@ -70,7 +74,7 @@ export class StockComponent implements OnInit {
       var worksheet = workbook.Sheets[first_sheet_name];
       const val = XLSX.utils.sheet_to_json(worksheet, { raw: true });
       var arraylist = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      console.log(val, 'val');
+      this.allData = val;
 
       this.getMaxElem(val, 'VOLUME', 'call');
       const callVolume = this.getFinalSum(val, 'VOLUME', 'call');
@@ -90,6 +94,8 @@ export class StockComponent implements OnInit {
       const f3 = this.finalData2(callOI, putOi);
 
       const f2 = this.safeStrike(highOicall, highOiput);
+
+
     };
   }
 
@@ -115,16 +121,16 @@ export class StockComponent implements OnInit {
 
     let aerf6 = type == 'put' ? arr[2]['OI_1'] : arr[2]['OI'];
 
-    console.log(
-      `${key} STRIKE', ${arr[0]['STRIKE PRICE']} first highest ${type} LTP ${aerf} data ${aerf4}`
-    );
-    console.log(
-      `${key} STRIKE', ${arr[1]['STRIKE PRICE']} second highest ${type} LTP ${aerf2} data ${aerf5}`
-    );
-    console.log(
-      `${key} STRIKE', ${arr[2]['STRIKE PRICE']} third highest ${type} LTP ${aerf3} data ${aerf6}`
-    );
+    let abc = ` ${key} STRIKE ${arr[0]['STRIKE PRICE']} first highest ${type} LTP ${aerf} oi data ${aerf4}`;
+    let abc2 = `${key} STRIKE', ${arr[1]['STRIKE PRICE']} second highest ${type} LTP ${aerf2} oi data ${aerf5}`;
+    let abc3= `${key} STRIKE', ${arr[2]['STRIKE PRICE']} third highest ${type} LTP ${aerf3} oi data ${aerf6}`;
 
+    const d = {key1: abc, key2: abc2, key3: abc3};
+    this.finalJson[this.counter] = d;
+    this.counter++;
+    // console.log(abc);
+    // console.log(abc2);
+    // console.log(abc3);
     // console.log(arr.slice(0, 3));
     return arr[0]['STRIKE PRICE'];
   }
@@ -134,22 +140,22 @@ export class StockComponent implements OnInit {
       (sum, cur) => sum + this.checkNumber(cur[key]),
       0
     );
-    console.log(`${result} total ${key} ${type}`);
+    // console.log(`${result} total ${key} ${type}`);
     return result;
   }
 
   finalData(call, put) {
     let ratio = (parseInt(put) / parseInt(call)).toFixed(2);
-    console.log(ratio, 'PCR volume');
+    this.finalJson['PCR volume'] = ratio;
   }
 
   finalData2(call, put) {
     let ratio = (parseInt(put) / parseInt(call)).toFixed(2);
-    console.log(ratio, 'PCR oi');
+    this.finalJson['PCR oi'] = ratio;
   }
 
   safeStrike(highcall, highputoi) {
     const safe = (highcall + highputoi) / 2;
-    console.log(safe, 'safe');
+    this.finalJson['safe strike'] = safe;
   }
 }

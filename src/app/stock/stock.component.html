@@ -1,6 +1,6 @@
 
 <div>
-<h2>Stock market average calculator</h2>
+<h4>Stock market average calculator</h4>
 
 <p>First buy price*</p>
 <input
@@ -41,6 +41,11 @@
 <input type="number" [(ngModel)]="totalAmount" disabled />
 </div>
 <hr>
+
+<div>
+<h4>Price Change Percent calculator</h4>
+
+
 <form [formGroup]="form" (ngSubmit)="submit(form.value)">
   
   <div>
@@ -61,9 +66,21 @@
 
   <button type="submit">submit</button>
 </form>
+<h2>{{totalValue}}</h2>
+</div>
+<hr>
+
+<div class="col-md-8 form-group">     
+<h4>NSE OI data Analysis - Upload nseindia oi sheet</h4>
+     
+  <input type="file" class="form-control" (change)="addfile($event)"  accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">   
+  
+  <pre>{{finalJson | json}}</pre>
+</div> 
 
 <hr>
-<div class="col-md-8 form-group">        
-  <input type="file" class="form-control" (change)="addfile($event)" placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">        
-</div> 
+<h2>All Data</h2>
+<pre>
+  {{allData | json}}
+</pre>
 
