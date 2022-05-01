@@ -3,6 +3,7 @@ import getUrls from 'get-urls';
 
 import * as linkify from 'linkifyjs';
 import linkifyHtml from 'linkify-html';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-basic',
@@ -12,7 +13,10 @@ import linkifyHtml from 'linkify-html';
 export class BasicComponent implements OnInit {
   @ViewChild("myDiv") divView: ElementRef;
 
-  constructor() { }
+  constructor(private comm: CommonService) { 
+this.comm.showNav = false;
+
+  }
 
   ngOnInit(): void {
 

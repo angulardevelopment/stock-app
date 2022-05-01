@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonService } from './common.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'averaging';
-  // showNav = 'true';
 
-  constructor(){
-    // localStorage.setItem('val', this.showNav);
+  constructor(private comm: CommonService){
   }
 }

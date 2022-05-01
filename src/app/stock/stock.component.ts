@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as XLSX from 'xlsx';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-stock',
@@ -24,7 +25,11 @@ export class StockComponent implements OnInit {
   finalJson = {};
   counter = 0;
   allData = [];
-  constructor(    private fb: FormBuilder) {}
+  constructor(    private fb: FormBuilder, private comm: CommonService) {
+
+    this.comm.showNav = false;
+
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
