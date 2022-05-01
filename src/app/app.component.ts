@@ -9,6 +9,6 @@ import { CommonService } from './common.service';
 export class AppComponent {
   title = 'averaging';
 
-  constructor(private comm: CommonService){
+  constructor(public comm: CommonService){
   }
 }
