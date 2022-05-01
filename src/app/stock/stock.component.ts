@@ -59,6 +59,7 @@ export class StockComponent implements OnInit {
 
 
   addfile(event) {
+    this.finalJson = {};
     this.file = event.target.files[0];
     let fileReader = new FileReader();
     fileReader.readAsArrayBuffer(this.file);
