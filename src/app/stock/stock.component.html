@@ -76,11 +76,21 @@
   <input type="file" class="form-control" (change)="addfile($event)"  accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">   
   
   <pre>{{finalJson | json}}</pre>
+
+  <hr>
+<h2>All Data</h2>
+<pre>
+  <!-- {{allData | json}} -->
+</pre>
 </div> 
 
 <hr>
-<h2>All Data</h2>
-<pre>
-  {{allData | json}}
-</pre>
+<div>
+  <h4>TODO: delta analysis</h4>
+  <h4>TODO: Breakeven stock price at expiration</h4>
+  https://www.calculatorsoup.com/calculators/financial/simple-interest-plus-principal-calculator.php
+  https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php
+</div>
+
+
 

@@ -44,9 +44,10 @@ export class StockComponent implements OnInit {
 
   getSecondTotal() {
     this.totalSecondPrice = this.secondBuyPrice * this.secondShare;
-    this.averagePrice =
-      (this.totalFirstPrice + this.totalSecondPrice) /
-      (this.firstShare + this.secondShare);
+    const avg =   (this.totalFirstPrice + this.totalSecondPrice) /
+    (this.firstShare + this.secondShare);
+    this.averagePrice = avg.toFixed(2);
+    
     this.totalShares = this.firstShare + this.secondShare;
     this.totalAmount = this.totalSecondPrice + this.totalFirstPrice;
   }
