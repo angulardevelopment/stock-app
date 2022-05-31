@@ -1,43 +1,31 @@
-
-https://angulardevelopment.github.io/stock-averaging-app/
-
-ng build --prod --baseHref="https://angulardevelopment.github.io/stock-averaging-app/"
-
 # About
-This helps you in Trading.
+This helps you in Trading. Trading  is basically a probablility game.
+Here my main focus is on
+Trading
+Investing
+Tax saving
+Personal finance								
+Retirement Planning
+
+# Goal
+trading signals - entry , exit, stoploss
+plotting in graph 
+helpful video creation
+demats under you
 
 # Features
 stock averaging 
-percentage
-Oi analysis
+profit/loss percent
+OI analysis
 
-# probablility game
-
-Trading
-Investing
-tax saving
-personal finance								
-Retirement Planning
-
-
+# Templates
 <img src="../../assets/images/c46f85e395d5403bb59443dfa95f2ecd.jpg" style="width:60%">
 
 <a href="https://in.investing.com/equities/india-adrs" target="_blank">https://in.investing.com/equities/india-adrs</a>
 
-todo-
-book drive
-chart patterns, Candlestick patterns
-topics
-option staretegy
-
-ideas - 
-daily nifty bnf analysis 
-option chain analysis
-Jackpot expiry
-https://www.youtube.com/watch?v=geH5Z9y49HY
-trade plan next day 
-
+# packages used
  npm i get-urls
  npm install linkifyjs linkify-html
 
+# deployed version link
  https://chimerical-melba-15a70b.netlify.app/

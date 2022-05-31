@@ -128,9 +128,9 @@ export class StockComponent implements OnInit {
 
     let aerf6 = type == 'put' ? arr[2]['OI_1'] : arr[2]['OI'];
 
-    let abc = ` ${key} STRIKE ${arr[0]['STRIKE PRICE']} first highest ${type} LTP ${aerf} oi data ${aerf4}`;
-    let abc2 = `${key} STRIKE', ${arr[1]['STRIKE PRICE']} second highest ${type} LTP ${aerf2} oi data ${aerf5}`;
-    let abc3= `${key} STRIKE', ${arr[2]['STRIKE PRICE']} third highest ${type} LTP ${aerf3} oi data ${aerf6}`;
+    let abc = ` ${key} STRIKE ${arr[0]['STRIKE PRICE']} First highest ${type} LTP ${aerf} OI data ${aerf4}`;
+    let abc2 = `${key} STRIKE', ${arr[1]['STRIKE PRICE']} Second highest ${type} LTP ${aerf2} OI data ${aerf5}`;
+    let abc3= `${key} STRIKE', ${arr[2]['STRIKE PRICE']} Third highest ${type} LTP ${aerf3} OI data ${aerf6}`;
 
     const d = {key1: abc, key2: abc2, key3: abc3};
     this.finalJson[this.counter] = d;
@@ -158,11 +158,11 @@ export class StockComponent implements OnInit {
 
   finalData2(call, put) {
     let ratio = (parseInt(put) / parseInt(call)).toFixed(2);
-    this.finalJson['PCR oi'] = ratio;
+    this.finalJson['PCR OI'] = ratio;
   }
 
   safeStrike(highcall, highputoi) {
     const safe = (highcall + highputoi) / 2;
-    this.finalJson['safe strike'] = safe;
+    this.finalJson['Safe strike'] = safe;
   }
 }
