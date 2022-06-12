@@ -50,12 +50,12 @@
   
   <div>
     <label>numVal1</label>
-    <input type="number" formControlName="numVal1" placeholder="numVal1">
+    <input type="number" formControlName="numVal1" placeholder="original price">
   </div>
 
   <div>
     <label>numVal2</label>
-    <input type="number" formControlName="numVal2" placeholder="numVal2">
+    <input type="number" formControlName="numVal2" placeholder="changed price">
   </div>
 
 
@@ -66,7 +66,7 @@
 
   <button type="submit">submit</button>
 </form>
-<h2>{{totalValue}}</h2>
+<h2>{{totalValue}} percent</h2>
 </div>
 <hr>
 
@@ -80,17 +80,24 @@
   <hr>
 <h2>All Data</h2>
 <pre>
-  <!-- {{allData | json}} -->
+  {{allData | json}}
 </pre>
 </div> 
 
 <hr>
-<div>
-  <h4>TODO: delta analysis</h4>
-  <h4>TODO: Breakeven stock price at expiration</h4>
-  https://www.calculatorsoup.com/calculators/financial/simple-interest-plus-principal-calculator.php
-  https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php
-</div>
+
+<pre>
+  TODO: 
+  delta analysis
+  Breakeven stock price at expiration
+  Risk reward
+  
+  
+</pre>
+
+<a href="https://www.calculatorsoup.com/calculators/financial/simple-interest-plus-principal-calculator.php" target="_blank">simple-interest</a>
+<hr>
+<a href="https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php" target="_blank">compound-interest</a>
 
 
 

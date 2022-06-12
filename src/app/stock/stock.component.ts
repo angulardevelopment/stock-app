@@ -128,9 +128,9 @@ export class StockComponent implements OnInit {
 
     let aerf6 = type == 'put' ? arr[2]['OI_1'] : arr[2]['OI'];
 
-    let abc = ` ${key} STRIKE ${arr[0]['STRIKE PRICE']} First highest ${type} LTP ${aerf} OI data ${aerf4}`;
-    let abc2 = `${key} STRIKE', ${arr[1]['STRIKE PRICE']} Second highest ${type} LTP ${aerf2} OI data ${aerf5}`;
-    let abc3= `${key} STRIKE', ${arr[2]['STRIKE PRICE']} Third highest ${type} LTP ${aerf3} OI data ${aerf6}`;
+    let abc = `Top ${key} STRIKE ${arr[0]['STRIKE PRICE']} First highest ${type} LTP ${aerf} OI data ${aerf4}`;
+    let abc2 = `Top ${key} STRIKE', ${arr[1]['STRIKE PRICE']} Second highest ${type} LTP ${aerf2} OI data ${aerf5}`;
+    let abc3= `Top ${key} STRIKE', ${arr[2]['STRIKE PRICE']} Third highest ${type} LTP ${aerf3} OI data ${aerf6}`;
 
     const d = {key1: abc, key2: abc2, key3: abc3};
     this.finalJson[this.counter] = d;
