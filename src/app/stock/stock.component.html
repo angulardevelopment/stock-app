@@ -1,5 +1,6 @@
 
 <div>
+<div>
 <h4>Stock market average calculator</h4>
 
 <p>First buy price*</p>
@@ -71,8 +72,9 @@
 <hr>
 
 <div class="col-md-8 form-group">     
-<h4>NSE OI data Analysis - Upload nseindia oi sheet</h4>
-     
+<h4>NSE option chain Analysis - Upload nseindia csv sheet after removing first row</h4>
+     <p>https://www.nseindia.com/option-chain</p>
+
   <input type="file" class="form-control" (change)="addfile($event)"  accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">   
   
   <pre>{{finalJson | json}}</pre>
@@ -98,6 +100,6 @@
 <a href="https://www.calculatorsoup.com/calculators/financial/simple-interest-plus-principal-calculator.php" target="_blank">simple-interest</a>
 <hr>
 <a href="https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php" target="_blank">compound-interest</a>
-
+</div>
 
 

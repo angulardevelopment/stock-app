@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import { CommonService } from '../common.service';
+import linkifyHtml from 'linkify-html';
 
 @Component({
   selector: 'app-stock',
@@ -9,6 +10,8 @@ import { CommonService } from '../common.service';
   styleUrls: ['./stock.component.css'],
 })
 export class StockComponent implements OnInit {
+  @ViewChild("myDiv") divView: ElementRef;
+
   firstBuyPrice;
   firstShare;
   totalFirstPrice;
@@ -37,7 +40,14 @@ export class StockComponent implements OnInit {
       numVal2: '',
     });
   }
-
+  ngAfterViewInit(){
+    // console.log(getUrls(this.divView.nativeElement.innerHTML));
+    
+    // const options = { defaultProtocol: 'https' , target:"_blank"};
+    // this.divView.nativeElement.innerHTML = linkifyHtml(this.divView.nativeElement.innerHTML, options);
+    
+    
+      }
   getFirstTotal() {
     this.totalFirstPrice = this.firstBuyPrice * this.firstShare;
   }
