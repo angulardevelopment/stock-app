@@ -1,105 +1,71 @@
-
-<div>
-<div>
-<h4>Stock market average calculator</h4>
-
-<p>First buy price*</p>
-<input
-  type="number"
-  [(ngModel)]="firstBuyPrice"
-  placeholder="share price"
-  (change)="getFirstTotal()"
-/>
-<input
-  type="number"
-  [(ngModel)]="firstShare"
-  placeholder="units"
-  (change)="getFirstTotal()"
-/>
-<input type="text" name="" id="" disabled [(ngModel)]="totalFirstPrice" />
-
-<br />
-<p>Second buy price*</p>
-<input
-  type="number"
-  [(ngModel)]="secondBuyPrice"
-  placeholder="share price"
-  (change)="getSecondTotal()"
-/>
-<input
-  type="number"
-  [(ngModel)]="secondShare"
-  placeholder="units"
-  (change)="getSecondTotal()"
-/>
-<input type="text" name="" id="" disabled [(ngModel)]="totalSecondPrice" />
-<br />
-<p>Final Average price</p>
-<input type="number" [(ngModel)]="averagePrice" disabled />
-<p>Final Quantity</p>
-<input type="number" [(ngModel)]="totalShares" disabled />
-<p>Total Amount</p>
-<input type="number" [(ngModel)]="totalAmount" disabled />
-</div>
-<hr>
-
-<div>
-<h4>Price Change Percent calculator</h4>
-
-
-<form [formGroup]="form" (ngSubmit)="submit(form.value)">
-  
+<div class="pre-val" #myDiv>
   <div>
-    <label>numVal1</label>
-    <input type="number" formControlName="numVal1" placeholder="original price">
+    <h4>Stock market average calculator</h4>
+
+    <p>First buy price*</p>
+    <input type="number" [(ngModel)]="firstBuyPrice" placeholder="share price" (change)="getFirstTotal()" />
+    <input type="number" [(ngModel)]="firstShare" placeholder="units" (change)="getFirstTotal()" />
+    <input type="text" name="" id="" disabled [(ngModel)]="totalFirstPrice" />
+
+    <br />
+    <p>Second buy price*</p>
+    <input type="number" [(ngModel)]="secondBuyPrice" placeholder="share price" (change)="getSecondTotal()" />
+    <input type="number" [(ngModel)]="secondShare" placeholder="units" (change)="getSecondTotal()" />
+    <input type="text" name="" id="" disabled [(ngModel)]="totalSecondPrice" />
+    <br />
+    <p>Final Average price</p>
+    <input type="number" [(ngModel)]="averagePrice" disabled />
+    <p>Final Quantity</p>
+    <input type="number" [(ngModel)]="totalShares" disabled />
+    <p>Total Amount</p>
+    <input type="number" [(ngModel)]="totalAmount" disabled />
   </div>
-
-  <div>
-    <label>numVal2</label>
-    <input type="number" formControlName="numVal2" placeholder="changed price">
-  </div>
-
-
-
-
-
-
-
-  <button type="submit">submit</button>
-</form>
-<h2>{{totalValue}} percent</h2>
-</div>
-<hr>
-
-<div class="col-md-8 form-group">     
-<h4>NSE option chain Analysis - Upload nseindia csv sheet after removing first row</h4>
-     <p>https://www.nseindia.com/option-chain</p>
-
-  <input type="file" class="form-control" (change)="addfile($event)"  accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">   
-  
-  <pre>{{finalJson | json}}</pre>
-
   <hr>
-<h2>All Data</h2>
-<pre>
+
+  <div>
+    <h4>Price Change Percent calculator</h4>
+
+
+    <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+
+      <div>
+        <label>numVal1</label>
+        <input type="number" formControlName="numVal1" placeholder="original price">
+      </div>
+
+      <div>
+        <label>numVal2</label>
+        <input type="number" formControlName="numVal2" placeholder="changed price">
+      </div>
+
+
+
+
+
+
+
+      <button type="submit">submit</button>
+    </form>
+    <h2>{{totalValue}} percent</h2>
+  </div>
+  <hr>
+
+  <div class="col-md-8 form-group">
+    <h4>NSE option chain Analysis - Upload nseindia csv sheet after removing first row</h4>
+    <p>https://www.nseindia.com/option-chain</p>
+
+    <input type="file" class="form-control" (change)="addfile($event)"
+      accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+
+    <pre>{{finalJson | json}}</pre>
+
+    <hr>
+    <h2>All Data</h2>
+    <pre>
   {{allData | json}}
 </pre>
-</div> 
+  </div>
 
-<hr>
+  <hr>
 
-<pre>
-  TODO: 
-  delta analysis
-  Breakeven stock price at expiration
-  Risk reward
-  
-  
-</pre>
-
-<a href="https://www.calculatorsoup.com/calculators/financial/simple-interest-plus-principal-calculator.php" target="_blank">simple-interest</a>
-<hr>
-<a href="https://www.calculatorsoup.com/calculators/financial/compound-interest-calculator.php" target="_blank">compound-interest</a>
 </div>
-
-

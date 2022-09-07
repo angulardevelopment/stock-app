@@ -21,14 +21,14 @@ export class StockComponent implements OnInit {
   averagePrice;
   totalShares;
   totalAmount;
-  form: FormGroup; 
+  form: FormGroup;
   file;
   arrayBuffer;
-  totalValue= '0';
+  totalValue = '0';
   finalJson = {};
   counter = 0;
   allData = [];
-  constructor(    private fb: FormBuilder, private comm: CommonService) {
+  constructor(private fb: FormBuilder, private comm: CommonService) {
 
     this.comm.showNav = false;
 
@@ -36,28 +36,28 @@ export class StockComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      numVal1:  '',
+      numVal1: '',
       numVal2: '',
     });
   }
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     // console.log(getUrls(this.divView.nativeElement.innerHTML));
-    
-    // const options = { defaultProtocol: 'https' , target:"_blank"};
-    // this.divView.nativeElement.innerHTML = linkifyHtml(this.divView.nativeElement.innerHTML, options);
-    
-    
-      }
+
+    const options = { defaultProtocol: 'https' , target:"_blank"};
+    this.divView.nativeElement.innerHTML = linkifyHtml(this.divView.nativeElement.innerHTML, options);
+
+
+  }
   getFirstTotal() {
     this.totalFirstPrice = this.firstBuyPrice * this.firstShare;
   }
 
   getSecondTotal() {
     this.totalSecondPrice = this.secondBuyPrice * this.secondShare;
-    const avg =   (this.totalFirstPrice + this.totalSecondPrice) /
-    (this.firstShare + this.secondShare);
+    const avg = (this.totalFirstPrice + this.totalSecondPrice) /
+      (this.firstShare + this.secondShare);
     this.averagePrice = avg.toFixed(2);
-    
+
     this.totalShares = this.firstShare + this.secondShare;
     this.totalAmount = this.totalSecondPrice + this.totalFirstPrice;
   }
@@ -125,8 +125,8 @@ export class StockComponent implements OnInit {
       this.checkNumber(a[key]) < this.checkNumber(b[key])
         ? 1
         : this.checkNumber(a[key]) > this.checkNumber(b[key])
-        ? -1
-        : 0
+          ? -1
+          : 0
     );
     let aerf = type == 'put' ? arr[0]['LTP_1'] : arr[0]['LTP'];
     let aerf2 = type == 'put' ? arr[1]['LTP_1'] : arr[1]['LTP'];
@@ -140,9 +140,9 @@ export class StockComponent implements OnInit {
 
     let abc = `Top ${key} STRIKE ${arr[0]['STRIKE PRICE']} First highest ${type} LTP ${aerf} OI data ${aerf4}`;
     let abc2 = `Top ${key} STRIKE', ${arr[1]['STRIKE PRICE']} Second highest ${type} LTP ${aerf2} OI data ${aerf5}`;
-    let abc3= `Top ${key} STRIKE', ${arr[2]['STRIKE PRICE']} Third highest ${type} LTP ${aerf3} OI data ${aerf6}`;
+    let abc3 = `Top ${key} STRIKE', ${arr[2]['STRIKE PRICE']} Third highest ${type} LTP ${aerf3} OI data ${aerf6}`;
 
-    const d = {key1: abc, key2: abc2, key3: abc3};
+    const d = { key1: abc, key2: abc2, key3: abc3 };
     this.finalJson[this.counter] = d;
     this.counter++;
     // console.log(abc);
