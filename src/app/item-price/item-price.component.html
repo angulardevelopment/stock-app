@@ -1,0 +1,97 @@
+
+<h2>My Products</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
+
+<div *ngIf="selectedHero" class="calc-price">
+
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div><span>Fresh purchase Item id: </span>{{selectedHero.id}}</div>
+
+  <!-- <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div> -->
+
+  <div>
+
+<form action="" [formGroup]="form" (ngSubmit)="submit(form.value)" class="container">
+
+  <label for="hero-name">New Product Code Input:</label>
+  <input
+    type="text" id="hero-name" placeholder="code"
+    formControlName="purchaseprice"
+    [value]="calculatePurchasePrice()"
+  />
+
+  <br>
+
+  <div
+    *ngIf="
+    form.controls['purchaseprice'].invalid &&
+      (form.controls['purchaseprice'].dirty || form.controls['purchaseprice'].touched)
+    "
+    class="alert alert-danger"
+  >
+    <div *ngIf="form.controls['purchaseprice'].errors['required']">price is required.</div>
+
+    <div *ngIf="form.controls['purchaseprice'].errors['minlength']">
+      purchaseprice must be at least 2 characters long.
+    </div>
+
+  </div>
+ 
+  <label for="hero-discount">Discount:</label>
+  <input
+    type="number" id="hero-discount" placeholder="percent"
+    formControlName="discount"
+    [value]="calculateDiscount()"
+  />
+
+<br>
+
+
+  <label for="hero-max-discount">Max Discount:</label>
+  <input
+    type="number" id="hero-max-discount" placeholder="percent"
+    formControlName="maxDiscount"
+    [value]="calculateMaxDiscount()"
+  />
+
+<br>
+
+
+
+
+    <label for="hero-replace-price" *ngIf="isReplace">Replace product price</label>
+    <input type="number" id="hero-replace-price" formControlName="oldProductPrice" placeholder="price" *ngIf="isReplace"/>
+
+    <button (click)="closeReplace()"  *ngIf="isReplace">Close</button>
+ 
+  <button (click)="isReplace = true">Replace</button>
+
+  <p>Final price  <mark>{{ this.form.value.finalVal }} </mark></p>
+
+
+</form>
+
+</div>
+
+
+</div>
+
+<!-- <div class="container">
+  <label for='a'>short_label</label>
+  <input type='text' id='a'>
+
+  <label for='b'>medium_label</label>
+  <input type='text' id='b'>
+
+  <label for='c'>very_extra_long_label</label>
+  <input type='text' id='c'>
+</div> -->

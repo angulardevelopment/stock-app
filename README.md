@@ -1,6 +1,12 @@
-# About
+# ItemCodes
+banana clip
+chain
+bangles
+earings
+tika
 
 
-# posts
 
-# Demo
+
+checkbox replace
+old product price
