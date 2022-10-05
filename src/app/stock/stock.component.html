@@ -1,4 +1,5 @@
-<div class="pre-val" #myDiv>
+<!-- #myDiv -->
+<div class="pre-val">
   <div>
     <h4>Stock market average calculator</h4>
 
@@ -24,48 +25,95 @@
 
   <div>
     <h4>Price Change Percent calculator</h4>
-
-
-    <form [formGroup]="form" (ngSubmit)="submit(form.value)">
-
+    <!-- (ngSubmit)="submit(form.value)" -->
+    <form [formGroup]="form">
       <div>
         <label>numVal1</label>
         <input type="number" formControlName="numVal1" placeholder="original price">
       </div>
-
       <div>
         <label>numVal2</label>
-        <input type="number" formControlName="numVal2" placeholder="changed price">
+        <input type="number" formControlName="numVal2" placeholder="changed price" (blur)="priceChangePercent(form.value.numVal1, form.value.numVal2)">
       </div>
-
-
-
-
-
-
-
-      <button type="submit">submit</button>
+      <!-- <button type="submit">submit</button> -->
     </form>
     <h2>{{totalValue}} percent</h2>
   </div>
+
   <hr>
 
   <div class="col-md-8 form-group">
     <h4>NSE option chain Analysis - Upload nseindia csv sheet after removing first row</h4>
     <p>https://www.nseindia.com/option-chain</p>
 
-    <input type="file" class="form-control" (change)="addfile($event)"
+    <p>run optionChainData </p>
+
+    <input type="file" class="form-control" (change)="optionChainData($event)"
       accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 
-    <pre>{{finalJson | json}}</pre>
+    <p>comparestrategydata </p>
+
+      <input type="file" class="form-control" (change)="comparestrategydata($event)"
+      accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+
+    <!-- <pre>{{finalJson | json}}</pre> -->
 
     <hr>
-    <h2>All Data</h2>
+    <!-- <h2>All Data</h2>
     <pre>
   {{allData | json}}
-</pre>
+</pre> -->
   </div>
 
   <hr>
 
 </div>
+
+<table id="customers">
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Berglunds snabbköp</td>
+    <td>Christina Berglund</td>
+    <td>Sweden</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table>
+
+<table id="customers">
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+    <th>Country</th>
+    <th>Country</th>
+
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Berglunds snabbköp</td>
+    <td>Christina Berglund</td>
+    <td>Sweden</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table>
