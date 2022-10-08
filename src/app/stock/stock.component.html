@@ -33,7 +33,8 @@
       </div>
       <div>
         <label>numVal2</label>
-        <input type="number" formControlName="numVal2" placeholder="changed price" (blur)="priceChangePercent(form.value.numVal1, form.value.numVal2)">
+        <input type="number" formControlName="numVal2" placeholder="changed price"
+          (blur)="priceChangePercent(form.value.numVal1, form.value.numVal2)">
       </div>
       <!-- <button type="submit">submit</button> -->
     </form>
@@ -53,12 +54,21 @@
 
     <p>comparestrategydata </p>
 
-      <input type="file" class="form-control" (change)="comparestrategydata($event)"
+    <input type="file" class="form-control" (change)="comparestrategydata($event)"
       accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
 
     <!-- <pre>{{finalJson | json}}</pre> -->
 
     <hr>
+    <button (click)="a1(allData)">IronCondor</button>
+    <button (click)="a11(allData1, strategydata)">IronCondor update</button>
+
+    <button (click)="a2(allData)">SHORTCALLBUTTERFLY</button>
+    <button (click)="a22(allData1, strategydata)">SHORTCALLBUTTERFLY update</button>
+
+
+    <button (click)="a3(allData)">LONGCALLBUTTERFLY</button>
+    <button (click)="a33(allData1, strategydata)">LONGCALLBUTTERFLY update</button>
     <!-- <h2>All Data</h2>
     <pre>
   {{allData | json}}
@@ -71,49 +81,47 @@
 
 <table id="customers">
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
+    <th>strike</th>
+    <th>price/premium</th>
+    <th>quantity/lot</th>
+    <th>total</th>
+    <th>total1</th>
+    <th>total2</th>
+
   </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Berglunds snabbköp</td>
-    <td>Christina Berglund</td>
-    <td>Sweden</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
+  <tr *ngFor="let i of strategydata">
+    <td>{{i[nsekeys.STRIKEPRICE]}}</td>
+    <td #va>{{i.type == nsekeys.CALL ? i[nsekeys.LTP]: i[nsekeys.LTP_1]}}</td>
+    <td>{{i.quantity}} {{'('+ i.lot + ')'}}</td>
+    <td>{{i.type1 == nsekeys.LONG ? (+(va.innerText) * i.quantity): (i.quantity * i[nsekeys.STRIKEPRICE] * margin)}}</td>
+    <td>{{i.type}}</td>
+    <td>{{i.type1}}</td>
+
   </tr>
 </table>
+<p>breakeven {{breakeven}}</p>
 
 <table id="customers">
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-    <th>Country</th>
-    <th>Country</th>
+    <th>strike</th>
+    <th>new price/premium</th>
+    <th>quantity/lot</th>
+    <th>total</th>
+    <th>total1</th>
+    <th>total2</th>
+    <th>points change</th>
+    <th>profit/loss</th>
+  </tr>
+  <tr *ngFor="let i of nextdata">
+    <td>{{i[nsekeys.STRIKEPRICE]}}</td>
+    <td #va1>{{i.type == nsekeys.CALL ? i[nsekeys.LTP]: i[nsekeys.LTP_1]}}</td>
+    <td>{{i.quantity}} {{'('+ i.lot + ')'}}</td>
+    <td>{{i.type1 == nsekeys.LONG ? (+(va1.innerText) * i.quantity): (i.quantity * i[nsekeys.STRIKEPRICE] * margin)}}</td>
+    <td>{{i.type}}</td>
+    <td>{{i.type1}}</td>
+    <td>{{i.d1}}</td>
+    <td>{{i.d2}}</td>
 
   </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Berglunds snabbköp</td>
-    <td>Christina Berglund</td>
-    <td>Sweden</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
 </table>
+<p>final {{fian}}</p>
