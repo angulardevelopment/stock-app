@@ -12,6 +12,9 @@ import {
   styleUrls: ['./item-price.component.scss'],
 })
 export class ItemPriceComponent implements OnInit {
+//   ItemCodes
+// checkbox replace
+// old product price
   ngOnInit(): void {}
 
   form: FormGroup;

@@ -28,26 +28,28 @@ export class StockComponent implements OnInit {
   // file;
   // arrayBuffer;
   totalValue = '0';
-  // finalJson = {};
-  // counter = 0;
-  allData = [];
-  allData1 = [];
+  finalJson = {};
+  counter = 0;
+  allstrategyData = {};
+  // allData1 = [];
 
   // spotprice = 39178;
   // gap = 500;
   // lotsize = 25;
 
-  spotprice = 17314;
-  gap = 200;
+  spotprice = 0;
+  lotsize = 0;
+  gap = 0; // 200
   // lotsize = 50;
 
-  strategydata = [];
-  nextdata = [];
+  // strategydata = [];
+  // nextdata = [];
   // pointDiffs = [];
   nsekeys = NSEKEYS;
-  fian;
-  breakeven;
+  // fian;
+  // breakeven;
   margin = .2 //20%
+  allData = [];
   constructor(private fb: FormBuilder, private comm: CommonService, private stock: StockService) {
 
     this.comm.showNav = false;
@@ -104,7 +106,7 @@ export class StockComponent implements OnInit {
 
 
   optionChainData(event) {
-    // this.finalJson = {};
+    this.finalJson = {};
     const file = event.target.files[0];
     let fileReader = new FileReader();
     fileReader.readAsArrayBuffer(file);
@@ -148,6 +150,16 @@ export class StockComponent implements OnInit {
 
       this.safeStrike(highOicall, highOiput);
 
+      this.ironcondor(val);
+      this.SHORTCALLBUTTERFLY(val);
+      this.LONGCALLBUTTERFLY(val);
+      this.BULLPUTSPREAD(val);
+      this.LONGSTRANGLE(val);
+      this.LONGSTRADDLE(val);
+      this.SHORTSTRADDLE(val);
+
+
+console.log(this.allstrategyData, this.spotprice, 'this.allstrategyData');
 
 
 
@@ -205,20 +217,20 @@ export class StockComponent implements OnInit {
 
     // let aerf6 = type == 'put' ? arr[2][NSEKEYS.OI_1] : arr[2][NSEKEYS.OI];
 
-    let abc = `Top ${key} STRIKE ${arr[0][NSEKEYS.STRIKEPRICE]} First highest ${type} LTP ${ltp} OI data ${oi}`;
-    let abc2 = `Top ${key} STRIKE', ${arr[1][NSEKEYS.STRIKEPRICE]} Second highest ${type} LTP ${ltp2} OI data ${oi2}`;
-    let abc3 = `Top ${key} STRIKE', ${arr[2][NSEKEYS.STRIKEPRICE]} Third highest ${type} LTP ${ltp3} OI data ${oi3}`;
+    let abc = `Top ${key} STRIKE ${arr[0][NSEKEYS.STRIKE]} First highest ${type} LTP ${ltp} OI data ${oi}`;
+    let abc2 = `Top ${key} STRIKE', ${arr[1][NSEKEYS.STRIKE]} Second highest ${type} LTP ${ltp2} OI data ${oi2}`;
+    let abc3 = `Top ${key} STRIKE', ${arr[2][NSEKEYS.STRIKE]} Third highest ${type} LTP ${ltp3} OI data ${oi3}`;
 
-    // const d = { key1: abc, key2: abc2, key3: abc3 };
-    // this.finalJson[this.counter] = d;
+    const d = { key1: abc, key2: abc2, key3: abc3 };
+    this.finalJson[this.counter] = d;
     console.log(abc, abc2, abc3, 'oi analysi');
 
-    // this.counter++;
+    this.counter++;
     // console.log(abc);
     // console.log(abc2);
     // console.log(abc3);
     // console.log(arr.slice(0, 3));
-    return arr[0][NSEKEYS.STRIKEPRICE];
+    return arr[0][NSEKEYS.STRIKE];
   }
 
   // retutrn total sum
@@ -237,86 +249,127 @@ export class StockComponent implements OnInit {
     let ratio = ((put) / (call)).toFixed(2);
     console.log(ratio, 'PCR volume');
 
-    // this.finalJson['PCR volume'] = ratio;
+    this.finalJson['PCR volume'] = ratio;
   }
 
   PCROIData(call: number, put: number) {
     let ratio = ((put) / (call)).toFixed(2);
     console.log(ratio, 'PCR OI');
 
-    // this.finalJson['PCR OI'] = ratio;
+    this.finalJson['PCR OI'] = ratio;
   }
 
   safeStrike(highcall: number, highputoi: number) {
     const safe = (highcall + highputoi) / 2;
     console.log(safe, 'Safe strike');
 
-    // this.finalJson['Safe strike'] = safe;
+    this.finalJson['Safe strike'] = safe;
   }
 
-  comparestrategydata(event) {
-    const file = event.target.files[0];
-    let fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(file);
-    fileReader.onload = (e) => {
-      const arrayBuffer = fileReader.result;
-      const data = new Uint8Array(arrayBuffer as ArrayBuffer);
-      let arr = new Array();
-      for (var i = 0; i != data.length; ++i)
-        arr[i] = String.fromCharCode(data[i]);
-      const bstr = arr.join('');
-      const workbook = XLSX.read(bstr, { type: 'binary' });
-      const first_sheet_name = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[first_sheet_name];
-      const val: NSEData[] = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-      this.allData1 = val;
+  // comparestrategydata(event) {
+  //   const file = event.target.files[0];
+  //   let fileReader = new FileReader();
+  //   fileReader.readAsArrayBuffer(file);
+  //   fileReader.onload = (e) => {
+  //     const arrayBuffer = fileReader.result;
+  //     const data = new Uint8Array(arrayBuffer as ArrayBuffer);
+  //     let arr = new Array();
+  //     for (var i = 0; i != data.length; ++i)
+  //       arr[i] = String.fromCharCode(data[i]);
+  //     const bstr = arr.join('');
+  //     const workbook = XLSX.read(bstr, { type: 'binary' });
+  //     const first_sheet_name = workbook.SheetNames[0];
+  //     const worksheet = workbook.Sheets[first_sheet_name];
+  //     const val: NSEData[] = XLSX.utils.sheet_to_json(worksheet, { raw: true });
+  //     this.allData1 = val;
 
-    }
-  }
+  //   }
+  // }
 
-  a1(val) {
-    this.strategydata = this.stock.IronCondor(val, this.spotprice, this.gap);
-    console.log(this.strategydata, 'IronCondor');
-
-  }
-
-  a2(val) {
-    this.strategydata = this.stock.SHORTCALLBUTTERFLY(val, this.spotprice, this.gap);
-    console.log(this.strategydata, 'SHORTCALLBUTTERFLY');
+  ironcondor (val) {
+    const strategydata = this.stock.IronCondor(val, this.spotprice, this.gap, this.lotsize);
+    // console.log(this.strategydata, 'IronCondor');
+    // this.allData.push({'ironcondor': strategydata});
+    this.allstrategyData['ironcondor'] = strategydata;
 
   }
 
-  a11(val, strategydata) {
+  SHORTCALLBUTTERFLY(val) {
+    const strategydata = this.stock.SHORTCALLBUTTERFLY(val, this.spotprice, this.gap, this.lotsize);
+    // console.log(this.strategydata, 'SHORTCALLBUTTERFLY');
+    // this.allData.push({'SHORTCALLBUTTERFLY': strategydata});
+    this.allstrategyData['SHORTCALLBUTTERFLY'] = strategydata;
 
-    const { nextdata, prof } = this.stock.updatedstrategydata(val, strategydata, OPTIONSTRATEGYKEYS.IRONCONDOR);
-    this.nextdata = nextdata;
-    this.fian = prof;
-    console.log(nextdata, prof, 'IronCondor upd');
-
-  }
-
-  a22(val, strategydata) {
-
-    const { nextdata, prof } = this.stock.updatedstrategydata(val, strategydata, OPTIONSTRATEGYKEYS.SHORTCALLBUTTERFLY);
-    this.nextdata = nextdata;
-    this.fian = prof;
-    console.log(nextdata, prof, 'SHORTCALLBUTTERFLY up');
 
   }
 
-  a3(val) {
-    this.strategydata = this.stock.LONGCALLBUTTERFLY(val, this.spotprice, this.gap);
-    console.log(this.strategydata, 'IronCondor');
+  // a11(val, strategydata) {
+
+  //   const { nextdata, prof } = this.stock.updatedstrategydata(val, strategydata, OPTIONSTRATEGYKEYS.IRONCONDOR);
+  //   this.nextdata = nextdata;
+  //   this.fian = prof;
+  //   console.log(nextdata, prof, 'IronCondor upd');
+
+  // }
+
+  // a22(val, strategydata) {
+
+  //   const { nextdata, prof } = this.stock.updatedstrategydata(val, strategydata, OPTIONSTRATEGYKEYS.SHORTCALLBUTTERFLY);
+  //   this.nextdata = nextdata;
+  //   this.fian = prof;
+  //   console.log(nextdata, prof, 'SHORTCALLBUTTERFLY up');
+
+  // }
+
+  LONGCALLBUTTERFLY(val) {
+    const strategydata = this.stock.LONGCALLBUTTERFLY(val, this.spotprice, this.gap, this.lotsize);
+    // console.log(this.strategydata, 'IronCondor');
+    // this.allData.push({'LONGCALLBUTTERFLY': strategydata});
+    this.allstrategyData['LONGCALLBUTTERFLY'] = strategydata;
+
 
   }
 
-  a33(val, strategydata) {
+  // a33(val, strategydata) {
 
-    const { nextdata, prof } = this.stock.updatedstrategydata(val, strategydata, OPTIONSTRATEGYKEYS.LONGCALLBUTTERFLY);
-    this.nextdata = nextdata;
-    this.fian = prof;
-    console.log(nextdata, prof, 'SHORTCALLBUTTERFLY up');
+  //   const { nextdata, prof } = this.stock.updatedstrategydata(val, strategydata, OPTIONSTRATEGYKEYS.LONGCALLBUTTERFLY);
+  //   this.nextdata = nextdata;
+  //   this.fian = prof;
+  //   console.log(nextdata, prof, 'SHORTCALLBUTTERFLY up');
+
+  // }
+
+  BULLPUTSPREAD(val){
+    const strategydata = this.stock.BULLPUTSPREAD(val, this.spotprice, this.gap, this.lotsize);
+    // this.allData.push({'BULLPUTSPREAD': strategydata});
+    this.allstrategyData['BULLPUTSPREAD'] = strategydata;
+
 
   }
 
+  LONGSTRANGLE(val){
+    const strategydata = this.stock.LONGSTRANGLE(val, this.spotprice, this.gap, this.lotsize);
+    // this.allData.push({'LONGSTRANGLE': strategydata});
+    this.allstrategyData['LONGSTRANGLE'] = strategydata;
+
+
+
+  }
+
+  LONGSTRADDLE(val){
+    const strategydata = this.stock.LONGSTRADDLE(val, this.spotprice, this.gap, this.lotsize);
+    // this.allData.push({'LONGSTRADDLE': strategydata});
+    this.allstrategyData['LONGSTRADDLE'] = strategydata;
+
+
+
+  }
+  SHORTSTRADDLE(val){
+    const strategydata = this.stock.SHORTSTRADDLE(val, this.spotprice, this.gap, this.lotsize);
+    // this.allData.push({'SHORTSTRADDLE': strategydata});
+    this.allstrategyData['SHORTSTRADDLE'] = strategydata;
+
+
+  }
+  
 }
