@@ -106,6 +106,9 @@ export class StockComponent implements OnInit {
 
 
   optionChainData(event) {
+    if (this.spotprice && this.lotsize && this.gap) {
+      
+   
     this.finalJson = {};
     const file = event.target.files[0];
     let fileReader = new FileReader();
@@ -165,6 +168,11 @@ console.log(this.allstrategyData, this.spotprice, 'this.allstrategyData');
 
 
     };
+  } else {
+    event.target.value = '';
+
+    alert('fill data');
+  }
   }
 
   // check not 0
