@@ -1,5 +1,9 @@
 ## App name
 stock-averaging-app
+   "get-urls": "^11.0.0",
+    "linkify-html": "^3.0.5",
+    "linkifyjs": "^3.0.5",
+    xlsx
 
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/angulardevelopment/stock-averaging-app?logo=github&style=social)](https://github.com/angulardevelopment/) [![GitHub last commit](https://img.shields.io/github/last-commit/angulardevelopment/stock-averaging-app?style=social&logo=git)](https://github.com/angulardevelopment/) [![GitHub stars](https://img.shields.io/github/stars/angulardevelopment/stock-averaging-app?style=social)](https://github.com/angulardevelopment/stock-averaging-app/stargazers) [![GitHub forks](https://img.shields.io/github/forks/angulardevelopment/stock-averaging-app?style=social&logo=git)](https://github.com/angulardevelopment/stock-averaging-app/network)
 
