@@ -15,15 +15,10 @@ import { GalleryComponent } from './gallery/gallery.component';
     StockComponent,
     ItemPriceComponent,
     ItemListingComponent,
-    GalleryComponent
+    GalleryComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-ReactiveFormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

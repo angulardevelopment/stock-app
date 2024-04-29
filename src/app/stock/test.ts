@@ -1,6 +1,6 @@
 export enum NSEKEYS {
     VOLUME = 'VOLUME',
-    // STRIKEPRICE = 'STRIKE PRICE',
+    STRIKEPRICE = 'STRIKE PRICE',
     STRIKE = 'STRIKE',
     OI = 'OI',
     CHNGINOI = 'CHNG IN OI',

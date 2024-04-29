@@ -4,15 +4,49 @@
     <h4>Stock market average calculator</h4>
 
     <p>First buy price*</p>
-    <input type="number" [(ngModel)]="firstBuyPrice" placeholder="share price" (change)="getFirstTotal()" />
-    <input type="number" [(ngModel)]="firstShare" placeholder="units" (change)="getFirstTotal()" />
-    <input type="text" name="" id="" disabled [(ngModel)]="totalFirstPrice" />
+    <input
+      type="number"
+      [(ngModel)]="firstBuyPrice"
+      placeholder="share price"
+      (change)="getFirstTotal()"
+    />
+    <input
+      type="number"
+      [(ngModel)]="firstShare"
+      placeholder="units"
+      (change)="getFirstTotal()"
+    />
+    <input
+      type="text"
+      name=""
+      id=""
+      disabled
+      [(ngModel)]="totalFirstPrice"
+      placeholder="totalFirst buy Price"
+    />
 
     <br />
     <p>Second buy price*</p>
-    <input type="number" [(ngModel)]="secondBuyPrice" placeholder="share price" (change)="getSecondTotal()" />
-    <input type="number" [(ngModel)]="secondShare" placeholder="units" (change)="getSecondTotal()" />
-    <input type="text" name="" id="" disabled [(ngModel)]="totalSecondPrice" />
+    <input
+      type="number"
+      [(ngModel)]="secondBuyPrice"
+      placeholder="share price"
+      (change)="getSecondTotal()"
+    />
+    <input
+      type="number"
+      [(ngModel)]="secondShare"
+      placeholder="units"
+      (change)="getSecondTotal()"
+    />
+    <input
+      type="text"
+      name=""
+      id=""
+      disabled
+      [(ngModel)]="totalSecondPrice"
+      placeholder="totalSecond buy Price"
+    />
     <br />
     <p>Final Average price</p>
     <input type="number" [(ngModel)]="averagePrice" disabled />
@@ -21,44 +55,50 @@
     <p>Total Amount</p>
     <input type="number" [(ngModel)]="totalAmount" disabled />
   </div>
-  <hr>
+  <hr />
 
   <div>
     <h4>Price Change Percent calculator</h4>
     <!-- (ngSubmit)="submit(form.value)" -->
     <form [formGroup]="form">
       <div>
-        <label>numVal1</label>
-        <input type="number" formControlName="numVal1" placeholder="original price">
+        <!-- <label>numVal1</label> -->
+        <input
+          type="number"
+          formControlName="numVal1"
+          placeholder="original price"
+        />
       </div>
       <div>
-        <label>numVal2</label>
-        <input type="number" formControlName="numVal2" placeholder="changed price"
-          (blur)="priceChangePercent(form.value.numVal1, form.value.numVal2)">
+        <!-- <label>numVal2</label> -->
+        <input
+          type="number"
+          formControlName="numVal2"
+          placeholder="changed price"
+          (blur)="priceChangePercent(form.value.numVal1, form.value.numVal2)"
+        />
       </div>
       <!-- <button type="submit">submit</button> -->
     </form>
-    <h2>{{totalValue}} percent</h2>
+    <h5>{{ totalValue }} percent change in price</h5>
   </div>
 
-  <hr>
+  <hr />
 
   <div class="col-md-8 form-group">
-    <h4>NSE option chain Analysis - Upload nseindia csv sheet after removing first row</h4>
+    <h4>
+      NSE option chain Analysis - Upload nseindia csv sheet after removing first
+      row
+    </h4>
     <p>https://www.nseindia.com/option-chain</p>
 
-    <p>run optionChainData </p>
-    <label for="">spotprice</label>
-    <input type="number" [(ngModel)]="spotprice" placeholder="spotprice" />
-    <label for="">lotsize</label>
 
-    <input type="number" [(ngModel)]="lotsize" placeholder="lotsize" />
-    <label for="">gap</label>
-
-    <input type="number" [(ngModel)]="gap" placeholder="gap" />
-
-    <input type="file" class="form-control" (change)="optionChainData($event)"
-      accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+    <input
+      type="file"
+      class="form-control"
+      (change)="optionChainData($event)"
+      accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+    />
 
     <!-- <p>comparestrategydata </p> -->
 
@@ -66,9 +106,9 @@
       accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"> -->
 
     <p>All Data analysis</p>
-    <pre>{{finalJson | json}}</pre>
+    <pre>{{ finalJson | json }}</pre>
 
-    <hr>
+    <hr />
     <!-- <button (click)="a1(allData)">IronCondor</button>
     <button (click)="a11(allData1, strategydata)">IronCondor update</button>
 
@@ -84,11 +124,22 @@
 </pre> -->
   </div>
 
-  <hr>
-
+  <hr />
 </div>
+<label for="">spotprice</label>
+<input type="number" [(ngModel)]="spotprice" placeholder="spotprice" />
+<br />
+<label for="">lotsize</label>
+<input type="number" [(ngModel)]="lotsize" placeholder="lotsize" />
+<br />
 
-<table id="customers">
+<label for="">gap</label>
+<input type="number" [(ngModel)]="gap" placeholder="gap" />
+
+<p>Fill these above details if you need data for these strategies</p>
+<button (click)="stratwgiesData()">strategies Data</button>
+
+<table id="customers" style="margin: 10px">
   <tr>
     <th>strike</th>
     <th>price/premium</th>
@@ -96,7 +147,6 @@
     <th>total</th>
     <th>total1</th>
     <th>total2</th>
-
   </tr>
   <!-- <tr *ngFor="let i of strategydata">
     <td>{{i[nsekeys.STRIKE]}}</td>
@@ -109,20 +159,26 @@
   </tr> -->
 
   <div *ngFor="let j of allstrategyData | keyvalue">
-    <div>{{j.key}}</div>
-  <!-- <div *ngFor="let j of j.value">
+    <div>{{ j.key }}</div>
+    <!-- <div *ngFor="let j of j.value">
     <div>{{j.val}}</div> -->
-  <tr *ngFor="let i of j.value">
-    <td>{{i[nsekeys.STRIKE]}}</td>
-    <td #va>{{i.type == nsekeys.CALL ? i[nsekeys.LTP]: i[nsekeys.LTP_1]}}</td>
-    <td>{{i.quantity}} {{'('+ i.lot + ')'}}</td>
-    <td>{{i.type1 == nsekeys.LONG ? (+(va.innerText) * i.quantity): (i.quantity * i[nsekeys.STRIKE] * margin)}}</td>
-    <td>{{i.type}}</td>
-    <td>{{i.type1}}</td>
-
-  </tr>
-  <!-- </div> -->
-
+    <tr *ngFor="let i of j.value">
+      <td>{{ i[nsekeys.STRIKE] }}</td>
+      <td #va>
+        {{ i.type == nsekeys.CALL ? i[nsekeys.LTP] : i[nsekeys.LTP_1] }}
+      </td>
+      <td>{{ i.quantity }} {{ '(' + i.lot + ')' }}</td>
+      <td>
+        {{
+          i.type1 == nsekeys.LONG
+            ? +va.innerText * i.quantity
+            : i.quantity * i[nsekeys.STRIKE] * margin
+        }}
+      </td>
+      <td>{{ i.type }}</td>
+      <td>{{ i.type1 }}</td>
+    </tr>
+    <!-- </div> -->
   </div>
 </table>
 <!-- <p>breakeven {{breakeven}}</p> -->
