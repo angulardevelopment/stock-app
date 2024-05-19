@@ -1,5 +1,3 @@
-
-
 # My Awesome YouTube Channel
 
 Welcome to my YouTube channel! 🎉 In this channel, I share exciting content related to web development. Whether you're interested in Angular, Javascript, or Productivity tips, you'll find something valuable here.
