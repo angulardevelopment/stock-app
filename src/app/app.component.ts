@@ -7,8 +7,6 @@ import { CommonService } from './common.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'averaging';
-
   constructor(public comm: CommonService){
   }
 }

@@ -6,12 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-listing.component.scss']
 })
 export class ItemListingComponent implements OnInit {
-
-
-
-
-
-
   heroes = [
     {id: 1, name:'banana clip'},
     {id: 2, name:'chain'},
@@ -19,6 +13,7 @@ export class ItemListingComponent implements OnInit {
     {id: 3, name:'earings'},
     {id: 4, name:'tika'}
 ];
+
   constructor() { }
 
   ngOnInit(): void {
