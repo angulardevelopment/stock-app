@@ -1,6 +1,6 @@
 <!-- #myDiv -->
 <div class="pre-val">
-  <div>
+  <div *ngIf="false">
     <h4>Stock market average calculator</h4>
 
     <p>First buy price*</p>
@@ -56,8 +56,7 @@
     <input type="number" [(ngModel)]="totalAmount" disabled />
   </div>
   <hr />
-
-  <div>
+  <div *ngIf="false">
     <h4>Price Change Percent calculator</h4>
     <!-- (ngSubmit)="submit(form.value)" -->
     <form [formGroup]="form">
@@ -82,73 +81,74 @@
     </form>
     <h5>{{ totalValue }} percent change in price</h5>
   </div>
-
   <hr />
+</div>
 
-  <div class="col-md-8 form-group">
-    <h4>
-      NSE option chain Analysis - Upload nseindia csv sheet after removing first
-      row
-    </h4>
-    <p>https://www.nseindia.com/option-chain</p>
+<div class="col-md-8 form-group" *ngIf="true">
+  <h4>Analysis - Upload nseindia csv sheet after removing first row</h4>
+  <a href="https://www.nseindia.com/option-chain" target="_blank"
+    ><p>NSE option chain</p></a
+  >
 
+  <input
+    type="file"
+    class="form-control"
+    (change)="optionChainData($event)"
+    accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+  />
 
-    <input
-      type="file"
-      class="form-control"
-      (change)="optionChainData($event)"
-      accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-    />
+  <!-- <p>comparestrategydata </p> -->
 
-    <!-- <p>comparestrategydata </p> -->
+  <!-- <input type="file" class="form-control" (change)="comparestrategydata($event)"
+    accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"> -->
 
-    <!-- <input type="file" class="form-control" (change)="comparestrategydata($event)"
-      accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"> -->
-
-    <p>All Data analysis</p>
-    <pre>{{ finalJson | json }}</pre>
-
-    <hr />
-    <!-- <button (click)="a1(allData)">IronCondor</button>
-    <button (click)="a11(allData1, strategydata)">IronCondor update</button>
-
-    <button (click)="a2(allData)">SHORTCALLBUTTERFLY</button>
-    <button (click)="a22(allData1, strategydata)">SHORTCALLBUTTERFLY update</button>
-
-
-    <button (click)="a3(allData)">LONGCALLBUTTERFLY</button>
-    <button (click)="a33(allData1, strategydata)">LONGCALLBUTTERFLY update</button> -->
-    <!-- <h2>All Data analysis</h2> -->
-    <!-- <pre>
-  {{allData | json}}
-</pre> -->
-  </div>
+  <p>All Data analysis</p>
+  <pre>{{ finalJson | json }}</pre>
 
   <hr />
 </div>
-<label for="">spotprice</label>
-<input type="number" [(ngModel)]="spotprice" placeholder="spotprice" />
-<br />
-<label for="">lotsize</label>
-<input type="number" [(ngModel)]="lotsize" placeholder="lotsize" />
-<br />
 
-<label for="">gap</label>
-<input type="number" [(ngModel)]="gap" placeholder="gap" />
+<div *ngIf="true">
+  <!-- <button (click)="a1(allData)">IronCondor</button>
+  <button (click)="a11(allData1, strategydata)">IronCondor update</button>
 
-<p>Fill these above details if you need data for these strategies</p>
-<button (click)="stratwgiesData()">strategies Data</button>
+  <button (click)="a2(allData)">SHORTCALLBUTTERFLY</button>
+  <button (click)="a22(allData1, strategydata)">SHORTCALLBUTTERFLY update</button>
 
-<table id="customers" style="margin: 10px">
-  <tr>
-    <th>strike</th>
-    <th>price/premium</th>
-    <th>quantity/lot</th>
-    <th>total</th>
-    <th>total1</th>
-    <th>total2</th>
-  </tr>
-  <!-- <tr *ngFor="let i of strategydata">
+
+  <button (click)="a3(allData)">LONGCALLBUTTERFLY</button>
+  <button (click)="a33(allData1, strategydata)">LONGCALLBUTTERFLY update</button> -->
+  <!-- <h2>All Data analysis</h2> -->
+  <!-- <pre>
+{{allData | json}}
+</pre> -->
+  <label for="">spotprice</label>
+  <input type="number" [(ngModel)]="spotprice" placeholder="spotprice" />
+  <label for="">lotsize</label>
+  <select [(ngModel)]="lotsize">
+    <option value="0">select lotsize</option>
+    <option value="25">25</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+  <label for="">gap</label>
+  <select [(ngModel)]="gap" (change)="strategiesData()">
+    <option value="0">select gap</option>
+    <option value="200">200</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+
+  <table id="customers" style="margin: 10px">
+    <tr>
+      <th>strike</th>
+      <th>price/premium</th>
+      <th>quantity/lot</th>
+      <th>total</th>
+      <th>total1</th>
+      <th>total2</th>
+    </tr>
+    <!-- <tr *ngFor="let i of strategydata">
     <td>{{i[nsekeys.STRIKE]}}</td>
     <td #va>{{i.type == nsekeys.CALL ? i[nsekeys.LTP]: i[nsekeys.LTP_1]}}</td>
     <td>{{i.quantity}} {{'('+ i.lot + ')'}}</td>
@@ -158,43 +158,43 @@
 
   </tr> -->
 
-  <div *ngFor="let j of allstrategyData | keyvalue">
-    <div>{{ j.key }}</div>
-    <!-- <div *ngFor="let j of j.value">
+    <div *ngFor="let j of allstrategyData | keyvalue">
+      <div>{{ j.key }}</div>
+      <!-- <div *ngFor="let j of j.value">
     <div>{{j.val}}</div> -->
-    <tr *ngFor="let i of j.value">
-      <td>{{ i[nsekeys.STRIKE] }}</td>
-      <td #va>
-        {{ i.type == nsekeys.CALL ? i[nsekeys.LTP] : i[nsekeys.LTP_1] }}
-      </td>
-      <td>{{ i.quantity }} {{ '(' + i.lot + ')' }}</td>
-      <td>
-        {{
-          i.type1 == nsekeys.LONG
-            ? +va.innerText * i.quantity
-            : i.quantity * i[nsekeys.STRIKE] * margin
-        }}
-      </td>
-      <td>{{ i.type }}</td>
-      <td>{{ i.type1 }}</td>
-    </tr>
-    <!-- </div> -->
-  </div>
-</table>
-<!-- <p>breakeven {{breakeven}}</p> -->
+      <tr *ngFor="let i of j.value">
+        <td>{{ i[nsekeys.STRIKE] }}</td>
+        <td #va>
+          {{ i.type == nsekeys.CALL ? i[nsekeys.LTP] : i[nsekeys.LTP_1] }}
+        </td>
+        <td>{{ i.quantity }} {{ "(" + i.lot + ")" }}</td>
+        <td>
+          {{
+            i.type1 == nsekeys.LONG
+              ? +va.innerText * i.quantity
+              : i.quantity * i[nsekeys.STRIKE] * margin
+          }}
+        </td>
+        <td>{{ i.type }}</td>
+        <td>{{ i.type1 }}</td>
+      </tr>
+      <!-- </div> -->
+    </div>
+  </table>
+  <!-- <p>breakeven {{breakeven}}</p> -->
 
-<table id="customers">
-  <tr>
-    <th>strike</th>
-    <th>new price/premium</th>
-    <th>quantity/lot</th>
-    <th>total</th>
-    <th>total1</th>
-    <th>total2</th>
-    <th>points change</th>
-    <th>profit/loss</th>
-  </tr>
-  <!-- <tr *ngFor="let i of nextdata">
+  <table id="customers">
+    <tr>
+      <th>strike</th>
+      <th>new price/premium</th>
+      <th>quantity/lot</th>
+      <th>total</th>
+      <th>total1</th>
+      <th>total2</th>
+      <th>points change</th>
+      <th>profit/loss</th>
+    </tr>
+    <!-- <tr *ngFor="let i of nextdata">
     <td>{{i[nsekeys.STRIKE]}}</td>
     <td #va1>{{i.type == nsekeys.CALL ? i[nsekeys.LTP]: i[nsekeys.LTP_1]}}</td>
     <td>{{i.quantity}} {{'('+ i.lot + ')'}}</td>
@@ -205,5 +205,7 @@
     <td>{{i.d2}}</td>
 
   </tr> -->
-</table>
-<!-- <p>final {{fian}}</p> -->
+  </table>
+  <!-- <p>final {{fian}}</p> -->
+   <button (click)="copyHeroName()">copy</button>
+</div>

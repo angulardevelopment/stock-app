@@ -10,6 +10,7 @@ import {
   selector: 'app-item-price',
   templateUrl: './item-price.component.html',
   styleUrls: ['./item-price.component.scss'],
+  standalone: false
 })
 export class ItemPriceComponent implements OnInit {
 //   ItemCodes
@@ -32,7 +33,7 @@ export class ItemPriceComponent implements OnInit {
   }
 
   calculatePurchasePrice() {
- 
+
     let purchaseprice = this.form.value.purchaseprice.split('');
     let price = '';
     let purchasepriceLen = purchaseprice.length;
@@ -93,7 +94,7 @@ export class ItemPriceComponent implements OnInit {
   submit(f: any) {
     console.log(f, 's');
   }
-  
+
   closeReplace() {
     this.isReplace = false;
     this.form.get('oldProductPrice').setValue('');

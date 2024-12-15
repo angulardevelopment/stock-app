@@ -24,9 +24,9 @@ Implemented basic features like file upload.
 
 ### Packages used
 -   "get-urls": "^11.0.0",
--    "linkify-html": "^3.0.5",
+    "linkify-html": "^4.1.3",
 -    "linkifyjs": "^3.0.5",
--    xlsx
+    "xlsx": "^0.18.5",
 
 ## Subscribe and Stay Updated!
 

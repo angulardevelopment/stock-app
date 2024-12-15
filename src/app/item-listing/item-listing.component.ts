@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-item-listing',
   templateUrl: './item-listing.component.html',
-  styleUrls: ['./item-listing.component.scss']
+  styleUrls: ['./item-listing.component.scss'],
+  standalone: false
 })
 export class ItemListingComponent implements OnInit {
   heroes = [

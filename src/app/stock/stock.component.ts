@@ -1,16 +1,19 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as XLSX from 'xlsx';
-import { CommonService } from '../common.service';
-import linkifyHtml from 'linkify-html';
-import { NSEData } from './model';
-import { NSEKEYS, OPTIONSTRATEGYKEYS } from './test';
-import { StockService } from './stock.service';
+import { CommonService } from '../services/common.service';
+// import linkifyHtml from 'linkify-html';
+import { NSEData } from '../models/model';
+import { NSEKEYS, OPTIONSTRATEGYKEYS } from '../models/test';
+import { StockService } from '../services/option-strategies.service';
+import { ApiService } from '../services/api.service';
+import {Clipboard} from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.component.html',
   styleUrls: ['./stock.component.css'],
+  standalone: false
 })
 export class StockComponent implements OnInit {
   @ViewChild('myDiv') divView: ElementRef;
@@ -37,9 +40,9 @@ export class StockComponent implements OnInit {
   // gap = 500;
   // lotsize = 25;
 
-  spotprice = 0;
-  lotsize = 0;
-  gap = 0; // 200
+  spotprice;
+  lotsize;
+  gap; // 200
   // lotsize = 50;
 
   // strategydata = [];
@@ -50,10 +53,13 @@ export class StockComponent implements OnInit {
   // breakeven;
   margin = 0.2; //20%
   allData = [];
+
   constructor(
     private fb: FormBuilder,
     private comm: CommonService,
-    private stock: StockService
+    private stock: StockService,
+    private api:ApiService,
+    private clipboard: Clipboard
   ) {
     this.comm.showNav = false;
   }
@@ -63,6 +69,8 @@ export class StockComponent implements OnInit {
       numVal1: '',
       numVal2: '',
     });
+    // this.getNSEData();
+    console.log(this)
   }
 
   ngAfterViewInit() {
@@ -121,7 +129,7 @@ export class StockComponent implements OnInit {
       });
       // var arraylist = XLSX.utils.sheet_to_json(worksheet, { raw: true });
       this.allData = val;
-      console.log(val, 'fg');
+      // console.log(val, 'fg');
       this.getMaxElem(val, NSEKEYS.VOLUME, NSEKEYS.CALL);
 
       const callVolume = this.getFinalSum(val, NSEKEYS.VOLUME);
@@ -159,6 +167,7 @@ export class StockComponent implements OnInit {
 
     //   alert('fill data');
     // }
+    console.log(this, 'optionChainData')
   }
 
   // check not 0
@@ -293,7 +302,7 @@ export class StockComponent implements OnInit {
   //   }
   // }
 
-  stratwgiesData() {
+  strategiesData() {
     const val = this.allData;
     this.ironcondor(val);
     this.SHORTCALLBUTTERFLY(val);
@@ -409,5 +418,15 @@ export class StockComponent implements OnInit {
     );
     // this.allData.push({'SHORTSTRADDLE': strategydata});
     this.allstrategyData['SHORTSTRADDLE'] = strategydata;
+  }
+
+  getNSEData(){
+    this.api.getApi('https://www.nseindia.com/api/option-chain-indices?symbol=NIFTY').subscribe((res)=>{
+      console.log(res)
+    })
+  }
+
+  copyHeroName() {
+    this.clipboard.copy('Alphonso');
   }
 }

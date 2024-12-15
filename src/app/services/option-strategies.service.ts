@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NSEData } from './model';
-import { NSEKEYS, OPTIONSTRATEGYKEYS } from './test';
+import { NSEData } from '../models/model';
+import { NSEKEYS, OPTIONSTRATEGYKEYS } from '../models/test';
 
 @Injectable({
   providedIn: 'root'
